@@ -1,11 +1,11 @@
 <?php
 
-include('../includes/conn.php');
 include('../includes/header.php');
-include('nav-student.php');
+include('../includes/conn.php');
+include('nav-admin.php');
 $id=$_SESSION['login'];
-echo "Register Number: ".$id;
-$query=mysqli_query($conn,"SELECT * FROM log WHERE student_id='$id' ");
+echo "Name: ".$id;
+$query=mysqli_query($conn,"SELECT * FROM log WHERE 1");
 $courses=mysqli_fetch_all($query,MYSQLI_ASSOC);
 ?>
 
@@ -28,7 +28,9 @@ $courses=mysqli_fetch_all($query,MYSQLI_ASSOC);
                 <td><?php if($course['approval']==0){
                     echo "Not yet";
                 }else{echo "Approved";} ?></td>
-                
+                <td><?php $c= mysqli_fetch_all($conn," SELECT * FROM `Course_Reg`.`Courses` WHERE `id` = '$id' ", MYSQLI_ASSOC);
+                echo $c['name'];
+                ?></td>
                 
           </tr>
     <?php

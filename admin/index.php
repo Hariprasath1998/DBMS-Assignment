@@ -1,24 +1,31 @@
 <?php
-    session_start();
-    error_reporting(0);
     include('../includes/conn.php');
     include('../includes/header.php');
     if(isset($_POST['submit']))
-{
+    {
     $username=$_POST['id'];
     $password=md5($_POST['pwd']);
     $query=mysqli_query($conn,"SELECT * FROM admin WHERE id='$username' and password='$password'");
     $num=mysqli_fetch_array($query);
     if($num>0){
-        include('../includes/nav.php');
-        $_SESSION['alogin']=$_POST['id'];
-        $_SESSION['id']=$num['id'];
+        $extra="registered.php";
+        echo "Logged in";
+        $_SESSION['login']=$_POST['id'];
+        $_SESSION['id']=$num['reg_num'];
+        $_SESSION['sname']=$num['Name'];
         $host=$_SERVER['HTTP_HOST'];
+        $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
+        header("location:http://$host$uri/$extra");
+        exit();
     }
     else{
         echo "Wrong Credentials";
         $_SESSION['errmsg']="Invalid username or password";
+        $extra="index.php";
         $host  = $_SERVER['HTTP_HOST'];
+        $uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
+        header("location:http://$host$uri/$extra");
+        exit();
     }
 }
 ?>

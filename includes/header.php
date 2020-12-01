@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +21,8 @@
             margin:20px auto;
             padding:20px;
         }
+        body{
+            background-color: #f4f4f4;
+        }
     </style>
 </head>
-<body class="grey lighten-4">

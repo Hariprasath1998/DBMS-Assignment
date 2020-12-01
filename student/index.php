@@ -1,6 +1,4 @@
 <?php
-    session_start();
-    error_reporting(0);
     include('../includes/conn.php');
     include('../includes/header.php');
     if(isset($_POST['submit']))
@@ -43,11 +41,11 @@
 
 <section class="container grey-text">
     <form action="index.php" method="POST">
-        <!-- <label for="id">Register Number:</label> -->
+        
         <input type="text" name="id" placeholder="Register Number" >
-        <!-- <label for="pwd">Password:</label> -->
+        
         <input type="password" name="pwd" placeholder="********">
-        <!-- <input type="submit" name="submit" value="submit" > -->
+        
         <div class="center">
             <input type="submit" name="submit" value="Login" class="btn brand z-depth-0">
         </div>
